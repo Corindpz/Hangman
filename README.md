@@ -1,2 +1,0 @@
-# Hangman
-he hangman game 

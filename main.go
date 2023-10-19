@@ -1,44 +1,43 @@
 package main
 
 import (
-	"bufio"
-	"math/rand"
+	"fmt"
+	"hangman/dictionary"
+	"hangman/hangman"
 	"os"
-	"strings"
-	"time"
 )
 
-func motAleatoire(fichier string) (string, error) {
-
-	fichierMots, err := os.Open(fichier)
-	if err != nil {
-		return "", err
-	}
-	defer fichierMots.Close()
-
-	scanner := bufio.NewScanner(fichierMots)
-	var mots []string
-	for scanner.Scan() {
-		mots = append(mots, scanner.Text())
-	}
-
-	rand.Seed(time.Now().Unix())
-	motChoisi := mots[rand.Intn(len(mots))]
-
-	return motChoisi, nil
-}
-
 func main() {
-	/*mot, err := motAleatoire("words.txt")
+
+	err := dictionary.Load("words.txt")
 	if err != nil {
-		fmt.Println("Erreur lors de la lecture du fichier:", err)
-		return
+		fmt.Printf("Could not load dictionary: %v\n", err)
+		os.Exit(1)
 	}
 
-	fmt.Println("Mot aléatoire choisi:", mot)*/
+	g, err := hangman.New(8, dictionary.PickWord())
+	if err != nil {
+		fmt.Printf("Could not create game: %v\n", err)
+		os.Exit(1)
+	}
 
-	content, _ := os.ReadFile("words.txt")
-	lines := strings.Split(string(content), "\n")
-	n1 := rand.Intn(len(lines) - 1)
-	print(lines[n1])
+	hangman.DrawWelcome()
+	guess := ""
+	for {
+		hangman.Draw(g, guess)
+
+		switch g.State {
+		case "won", "lost":
+			os.Exit(0)
+		}
+
+		l, err := hangman.ReadGuess()
+		if err != nil {
+			fmt.Printf("Could not read from terminal: %v", err)
+			os.Exit(1)
+		}
+		guess = l
+
+		g.MakeAGuess(guess)
+	}
 }
