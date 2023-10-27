@@ -28,7 +28,6 @@ func Load(filename string) error { //charge le .txt avec les noms de champions
 }
 
 func PickWord() string { //prend un nom de champion aléatoire
-	// Reset seed to be always different
 	rand.Seed(time.Now().Unix())
 	i := rand.Intn(len(words))
 	return words[i]
