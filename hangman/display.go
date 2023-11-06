@@ -2,7 +2,10 @@ package hangman
 
 import (
 	"fmt"
+	"os"
 )
+
+var choice int
 
 func DrawWelcome() {
 	fmt.Println(`
@@ -34,6 +37,23 @@ func DrawWelcome() {
 `)
 }
 
+func Menu(g *Game) {
+	fmt.Println("-----------------------")
+	fmt.Println("1.Commencer à jouer")
+	fmt.Println("2.Quitter")
+
+	fmt.Scan(&choice)
+
+	switch choice {
+	case 1:
+		Draw(g, "")
+	case 2:
+		os.Exit(0)
+	default:
+		fmt.Println("Choix non valide. Veuillez choisir une autre option.")
+	}
+
+}
 func Draw(g *Game, guess string) {
 	drawTurns(g.TurnsLeft)
 	drawState(g, guess)
@@ -135,18 +155,8 @@ func drawTurns(l int) {
 		`
 	case 9:
 		draw = `
-			|
-			|
-			|
-			|
-			|
 		=========
 	`
-	case 10:
-		draw = `
-		=========
-
-		`
 	}
 	fmt.Println(draw)
 }
@@ -164,6 +174,7 @@ func drawState(g *Game, guess string) {
 
 	fmt.Print("Utilisée: ")
 	drawLetters(g.UsedLetters)
+	fmt.Println()
 
 	switch g.State {
 	case "goodGuess":

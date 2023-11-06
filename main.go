@@ -22,6 +22,9 @@ func main() {
 	}
 
 	hangman.DrawWelcome()
+	hangman.Menu(g)
+	fmt.Print("\033[H\033[2J")
+
 	guess := ""
 	for {
 		hangman.Draw(g, guess)
@@ -39,5 +42,7 @@ func main() {
 		guess = l
 
 		g.MakeAGuess(guess)
+		fmt.Print("\033[H\033[2J")
 	}
+
 }
