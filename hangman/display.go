@@ -63,7 +63,7 @@ func Draw(g *Game, guess string) {
 func drawTurns(l int) {
 	var draw string
 	switch l {
-	case 0:
+	case 1:
 		draw = `
 		+---+  
 		|   |  
@@ -73,7 +73,7 @@ func drawTurns(l int) {
 			|  
 	  =========
 		`
-	case 1:
+	case 2:
 		draw = `
 		+---+  
 		|   |  
@@ -83,7 +83,7 @@ func drawTurns(l int) {
 			|  
 	  =========
 		`
-	case 2:
+	case 3:
 		draw = `
 		+---+  
 		|   |  
@@ -93,7 +93,7 @@ func drawTurns(l int) {
 			|  
 	  =========
 		`
-	case 3:
+	case 4:
 		draw = `
 		+---+  
 		|   |  
@@ -103,32 +103,21 @@ func drawTurns(l int) {
 			|  
 	  =========
 			`
-	case 4:
-		draw = `
-		+---+  
-		|   |  
-		O   |  
-		|   |  
-			|  
-			|  
-	  =========
-		`
 	case 5:
 		draw = `
 		+---+  
 		|   |  
 		O   |  
-			|  
+		|   |  
 			|  
 			|  
 	  =========
 		`
 	case 6:
 		draw = `
-    
 		+---+  
 		|   |  
-			|  
+		O   |  
 			|  
 			|  
 			|  
@@ -137,23 +126,33 @@ func drawTurns(l int) {
 	case 7:
 		draw = `
 		+---+  
-			|  
-			|  
-			|  
-			|  
-			|  
-  	 =========
-		`
-	case 8:
-		draw = `
-			|  
+		|   |  
 			|  
 			|  
 			|  
 			|  
 	  =========
 		`
+	case 8:
+		draw = `
+		+---+  
+		|  
+		|  
+		|  
+		|  
+		|  
+  =========
+		`
 	case 9:
+		draw = `
+		|  
+		|  
+		|  
+		|  
+		|  
+  =========
+		`
+	case 10:
 		draw = `
 		=========
 	`
