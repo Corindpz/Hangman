@@ -20,10 +20,10 @@ func ReadGuess() (guess string, err error) {
 		guess = strings.TrimSpace(guess)
 
 		if len(guess) != 1 {
-			fmt.Printf("Format invalide. letter=%v, len=%v", guess, len(guess))
+			fmt.Println("Format invalide.", guess, len(guess))
 			continue
 		}
 		valid = true
 	}
-	return guess, nil
+	return
 }

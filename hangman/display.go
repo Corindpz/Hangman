@@ -33,22 +33,22 @@ func DrawWelcome() {
 ⠀⠀⠀⠀⠀⠀⠘⢿⣿⣧⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⣿⣿⣿⠟⠁
 ⠀⠀⠀⠀⠀⠀⠀⠀⠉⣻⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠋⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠋⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠰⣾⣟⣾⣽⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⡿⣿⣻⠝⠁⠀⠀⠀⠀⠀
-`)
+⠀⠀⠀⠀⠀⠀⠰⣾⣟⣾⣽⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⡿⣿⣻⠝⠁⠀⠀⠀⠀`)
 }
 
 func Menu(g *Game) {
 	fmt.Println("-----------------------")
-	fmt.Println("1.Commencer à jouer")
-	fmt.Println("2.Quitter")
+	fmt.Println("1. Commencer à jouer")
+	fmt.Println("2. Quitter")
 
-	fmt.Scan(&choice)
+	fmt.Scanln(&choice)
 
 	switch choice {
 	case 1:
 		Draw(g, "")
 	case 2:
 		os.Exit(0)
+
 	default:
 		fmt.Println("Choix non valide. Veuillez choisir une autre option.")
 	}
@@ -184,7 +184,7 @@ func drawState(g *Game, guess string) {
 	case "badGuess":
 		fmt.Printf("Mauvaise réponse, '%s' n'est pas dans le mot", guess)
 	case "lost":
-		fmt.Print("Mip Moop :(! Le mot était : ")
+		fmt.Print("Mip Moop :( ! Le mot était : ")
 		drawLetters(g.Letters)
 	case "won":
 		fmt.Print("GG WP! Jgl canyon turbo sulfuro astro gap: ")
