@@ -181,16 +181,16 @@ func drawState(g *Game, guess string) {
 
 	switch g.State {
 	case "goodGuess":
-		fmt.Print("GG!")
+		fmt.Print("\x1b[32m GG! \x1b[0m")
 	case "alreadyGuessed":
 		fmt.Printf("T'as déjà utilisé le '%s' chef", guess)
 	case "badGuess":
-		fmt.Printf("Mauvaise réponse, '%s' n'est pas dans le mot", guess)
+		fmt.Printf("\x1b[31m Mauvaise réponse, '%s' n'est pas dans le mot \x1b[0m", guess)
 	case "lost":
-		fmt.Print("Mip Moop :( ! Le mot était : ")
+		fmt.Print("\x1b[31m Mip Moop :( ! Le mot était : \x1b[0m")
 		drawLetters(g.Letters)
 	case "won":
-		fmt.Print("GG WP! Jgl canyon turbo sulfuro astro gap: ")
+		fmt.Print("\x1b[32m GG WP! Jgl canyon turbo sulfuro astro gap: \x1b[0m ")
 		drawLetters(g.Letters)
 	}
 	fmt.Println()
