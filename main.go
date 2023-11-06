@@ -24,14 +24,27 @@ func main() {
 	hangman.DrawWelcome()
 	hangman.Menu(g)
 	fmt.Print("\033[H\033[2J")
-
 	guess := ""
-	for {
+
+	gameOver := false
+
+	for !gameOver {
 		hangman.Draw(g, guess)
 
 		switch g.State {
 		case "won", "lost":
-			os.Exit(0)
+			gameOver = true
+
+			var replay string
+			fmt.Println("Voulez-vous rejouer ? (oui/non)")
+			fmt.Scanln(&replay)
+
+			if replay == "oui" {
+				gameOver = false
+				main()
+			} else {
+				os.Exit(0)
+			}
 		}
 
 		l, err := hangman.ReadGuess()
@@ -44,5 +57,4 @@ func main() {
 		g.MakeAGuess(guess)
 		fmt.Print("\033[H\033[2J")
 	}
-
 }

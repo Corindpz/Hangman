@@ -6,6 +6,7 @@ import (
 )
 
 var choice int
+var choix int
 
 func DrawWelcome() {
 	fmt.Println(`
@@ -47,13 +48,13 @@ func Menu(g *Game) {
 	case 1:
 		Draw(g, "")
 	case 2:
-		os.Exit(0)
+		os.Exit(1)
 
 	default:
 		fmt.Println("Choix non valide. Veuillez choisir une autre option.")
 	}
-
 }
+
 func Draw(g *Game, guess string) {
 	drawTurns(g.TurnsLeft)
 	drawState(g, guess)
@@ -193,5 +194,5 @@ func drawState(g *Game, guess string) {
 		fmt.Print("\x1b[32m GG WP! Jgl canyon turbo sulfuro astro gap: \x1b[0m ")
 		drawLetters(g.Letters)
 	}
-	fmt.Println()
+
 }
